@@ -4,7 +4,7 @@ Step into the future of HR with our AI-driven ME781 project. Our Two-Phase HR Op
 
 # How to set up this project in your system
 1. Clone this repo:
-    `git clone https://github.com/Yadavbalbir/](https://github.com/Yadavbalbir/HR_Process_Optimization_using_AI.git`
+    `https://github.com/Yadavbalbir/HR_Process_Optimization_using_AI.git`
 2. Go into the directory:
    `cd HR_Process_Optimization_using_AI`
 3. Create a virtual environment:
