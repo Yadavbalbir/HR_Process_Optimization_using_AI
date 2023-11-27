@@ -29,6 +29,7 @@
                 <th>Branch</th>
                 <th>CPI</th>
                 <th>Overall Score</th>
+                <th>Questions</th>
             </tr>
         </thead>
         <tbody>
@@ -38,10 +39,39 @@
                 <td>{{ candidate.department }}</td>
                 <td>{{ candidate.cpi }}</td>
                 <td>{{ candidate.overall_score }}</td>
+                <td><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{candidate.candidate_name}}">
+                    view questions
+                </button></td>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{candidate.candidate_name}}" tabindex="-1" aria-labelledby="exampleModal{{candidate.candidate_name}}Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Question for {{candidate.candidate_name}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="">1. {{ candidate.q1}}</p>
+                                <p class="">2. {{ candidate.q2}}</p>
+                                <p class="">3. {{ candidate.q3}}</p>
+                                <p class="">4. {{ candidate.q4}}</p>
+                                <p class="">5. {{ candidate.q5}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </tr>
             {% endfor %}
          
         </tbody>
     </table>
+    
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
 {% endblock %}
