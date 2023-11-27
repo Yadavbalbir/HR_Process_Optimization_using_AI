@@ -5,7 +5,7 @@ from hpo import settings
 import ast
 from openai import OpenAI
 client = OpenAI(
-    api_key=""
+    api_key="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"
 )
 
 def index(request):
@@ -16,48 +16,23 @@ def get_prompt(jd, job_title, resume):
     print("Generating prompt...")
     print("################################################################")
     prompt = '''
-    Job Title: {}
-    Job Description: {}
-    candidates Resume: {}
+    job_title: {}
+    job_description: {}
+    Extract the relevant information from the resume given below like name, department like civil engineering etc, cpi etc.
+    candidates_Resume_text: {}
 
-    Scoring Criteria:
-    Evaluate each resume based on the following criteria and assign a score on a scale of 1 to 10, where 1 is the lowest and 10 is the highest.
+    Please provide scores for the following criteria:
+    1. Relevance to Job Title (range 1-10)
+    2. Professional Experience (range 1-10)
+    3. Educational Background  (range 1-10)
+    4. Key Skills (range 1-10)
+    5. Achievements and Accomplishments (range 1-10)
+    6. Clarity and Organization (range 1-10)
+    7. Relevant Certifications (range 1-10)
 
-    Relevance to Job Title:
+    Overall Score: (average of above 7 scores)
+    return candidate_name, department_name, cpi, overall_score in json format
 
-    To what extent does the resume align with the specified job title?
-    Score: [ ]
-    Professional Experience:
-
-    Evaluate the candidate's professional experience in relation to the job requirements.
-    Score: [ ]
-    Educational Background:
-
-    Consider the candidate's education and how well it matches the job requirements.
-    Score: [ ]
-    Key Skills:
-
-    Assess the presence of key skills relevant to the job description.
-    Score: [ ]
-    Achievements and Accomplishments:
-
-    Review the candidate's achievements and accomplishments.
-    Score: [ ]
-    Clarity and Organization:
-
-    Evaluate the overall clarity and organization of the resume.
-    Score: [ ]
-    Relevant Certifications:
-
-    Check for any relevant certifications that add value to the candidate's profile.
-    Score: [ ]
-    Additional Information:
-
-    Consider any additional information provided in the resume.
-    Score: [ ]
-    Overall Score: [ ]
-
-    return json which contains candiate name and overall score
     '''.format(job_title, jd, resume)
 
     return prompt
@@ -73,11 +48,11 @@ def demo(request):
             resume_content.append(handle_uploaded_file(uploaded_file))
         # Add your logic for resume processing here
         # ...
-        i = 0
+        i = 1
         for resume in resume_content:
             prompt = get_prompt(jd, job_title, resume)
             print("################################################################")
-            print("Prompt Generated successfully for candidate "+ str(1))
+            print("Prompt Generated successfully for candidate "+ str(i))
             i += 1
             print("################################################################")
 
@@ -85,11 +60,12 @@ def demo(request):
             completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Evaluate resume for a given job position based on the given job description. Use a scale of 1 to 10 for each criterion, where 1 is the lowest and 10 is the highest. Give candidate_name, department, cpi and his overall_score as your response, use only these variables strictly. don't include anything else in your response"},
+                {"role": "system", "content": "Evaluate resume for a given job position based on the given job description. Use a scale of 1 to 10 for each criterion, where 1 is the lowest and 10 is the highest. Give candidate_name, department, cpi and his overall_score as your response, use only these variables strictly. don't include anything else in your response. Don't be too strictly in scoring."},
                 {"role": "user", "content": prompt }
             ]
             )
-
+            print("################################################################")
+            print("LLM response received successfully")
             message = completion.choices[0].message
             candidate = ast.literal_eval(message.content)
             shortlisted.append(candidate)
