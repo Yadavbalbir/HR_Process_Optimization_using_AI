@@ -3,12 +3,13 @@ Step into the future of HR with our AI-driven ME781 project. Our Two-Phase HR Op
 
 
 # How to set up this project in your system
-1. Clone this repo git clone https://github.com/Yadavbalbir/
-2. Go into the directory cd HR_Process_Optimization_using_AI
-3. Create a virtual environment python -m venv venv
+1. Clone this repo:
+    `git clone https://github.com/Yadavbalbir/](https://github.com/Yadavbalbir/HR_Process_Optimization_using_AI.git`
+2. Go into the directory `cd HR_Process_Optimization_using_AI`
+3. Create a virtual environment `python -m venv venv`
 4. Activate it:
-   - Windows:.\venv\Scripts\activate
-   - Mac: source venv/bin/activate
-5. Install the required dependencies pip install -r requirements.txt
+   - Windows:`.\venv\Scripts\activate`
+   - Mac: `source venv/bin/activate`
+5. Install the required dependencies `pip install -r requirements.txt`
 
 
