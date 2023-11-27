@@ -5,7 +5,7 @@ from hpo import settings
 import ast
 from openai import OpenAI
 client = OpenAI(
-    api_key="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"
+    api_key=""
 )
 
 def index(request):
