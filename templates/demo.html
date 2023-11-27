@@ -5,29 +5,31 @@
 <div class="container my-5">
     <div class="row align-items-center">
         <div class="col-md-6">
-            <form>
-                <div class="form-group">
-                    <label for="fileInput" class="font-weight-bold">Upload Resumes</label>
-                    <input type="file" class="form-control-file" id="fileInput" multiple>
+            <form method="post" action="/demo" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="custom-file mb-3">
+                    <input type="file" class="form-control" id="customFile" name="resumes" accept=".pdf" multiple>
+                    <label class="custom-file-label" for="customFile">Choose PDF file</label>
                 </div>
                 
                 <div class="mb-4">
                     <label for="exampleFormControlInput1" class="form-label text-dark font-weight-medium">Job Title</label>
-                    <input type="text" class="form-control" id="job_title">
+                    <input type="text" class="form-control" name="job_title" id="job_title">
                 </div>
             
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label text-dark font-weight-medium">Job Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="jd" rows="8"></textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-sm btn-primary">Rank</button>
+                <button type="submit" class="btn btn-sm btn-primary">Shortlist</button>
             </form>
             
         </div>
         <div class="col-md-6">
             <img src="{% static 'images/getting-started.jpg'%}" class="img-fluid" alt="Your Image">
         </div>
+  
     </div>
 </div>
 

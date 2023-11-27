@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block content%}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Result Page</h2>
+
+    <!-- Job Title and Job Description -->
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Job Title:</h4>
+            <p>{{job_title}}</p>
+        </div>
+        <div class="col-md-6">
+            <h4>Job Description:</h4>
+            <p>
+                {{jd}}
+                <!-- Add your full job description here -->
+            </p>
+        </div>
+    </div>
+
+    <!-- Candidates Table -->
+    <h2 class="mt-5 mb-3">Shortlisted Candidates</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>CPI</th>
+                <th>Overall Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidate in shortlisted %}
+            <tr>
+                <td>{{ candidate.candidate_name }}</td>
+                <td>{{ candidate.department }}</td>
+                <td>{{ candidate.cpi }}</td>
+                <td>{{ candidate.overall_score }}</td>
+            </tr>
+            {% endfor %}
+            <!-- Add more rows for other candidates -->
+        </tbody>
+    </table>
+</div>
+{% endblock %}
