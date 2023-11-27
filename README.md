@@ -1,0 +1,2 @@
+# HR_Process_Optimization_using_AI
+Step into the future of HR with our AI-driven ME781 project. Our Two-Phase HR Optimization Tool integrates Large Language Models (LLMs) for a revolutionary approach to resume analysis. In Phase 1, LLMs process resumes, extracting key insights. Phase 2 intelligently shortlists top candidates based on these insights, saving time and ensuring precision in talent acquisition.
